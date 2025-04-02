@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCell - Você faz parte</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        video {
+            width: 90%;
+            max-width: 400px;
+            border: 2px solid #00ff00;
+            margin-top: 20px;
+        }
+        #msg {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>☠ KCell ☠</h1>
+    <p id="msg">VOCÊ FAZ PARTE DA NOSSA EQUIPE</p>
+    <video id="camera" autoplay playsinline></video><script>
+    async function startCamera() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+            const videoElement = document.getElementById('camera');
+            videoElement.srcObject = stream;
+        } catch (error) {
+            document.getElementById('msg').innerText = "Acesso à câmera negado... Você não pode se esconder.";
+            console.error("Erro ao acessar a câmera", error);
+        }
+    }
+    document.addEventListener("DOMContentLoaded", startCamera);
+</script>
+
+</body>
+</html>
